@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { Grid } from '@contentful/f36-components';
 import { useSDK } from '@contentful/react-apps-toolkit';
-import { FieldWrapper, Field as DefaultField } from '@contentful/default-field-editors';
+import { FieldWrapper, Field } from '@contentful/default-field-editors';
 
 const Entry = () => {
   const sdk = useSDK();
@@ -32,7 +32,6 @@ const Entry = () => {
               ],
             };
             setDisabledFields(disabledFieldsByType[value] ?? []);
-            console.log(`Value changed: ${value}`);
           })
         }
         return {
@@ -40,6 +39,7 @@ const Entry = () => {
           sdk: fieldExtensionSdk,
         }
       }),
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       [sdk.entry.fields]
   )
 
@@ -52,7 +52,7 @@ const Entry = () => {
         return disabledFields.includes(field.id) ? null : (
           <Grid.Item key={field.id}>
             <FieldWrapper key={field.id} sdk={sdk} name={field.name}>
-              <DefaultField sdk={sdk} />
+              <Field sdk={sdk} />
             </FieldWrapper>
           </Grid.Item>
         )
