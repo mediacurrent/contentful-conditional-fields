@@ -27,8 +27,7 @@ const Entry = () => {
               ],
               'Minimalist Hero': [
                 'image',
-                'mediaAsset',
-                'ctaLink',
+                'bodyText',
               ],
             };
             setDisabledFields(disabledFieldsByType[value] ?? []);
